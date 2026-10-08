@@ -1,0 +1,6 @@
+[Unit]
+Description=Fetch electricity spot pricing from api
+[Service]
+ExecStart=/opt/bin/spot-pricing-datafetcher
+Environment="SPOT_PRICING_API_URL=SET_ME"
+Environment="SPOT_PRICING_SQLITE_DB_URI=/opt/data/spot-pricing.sqlite3"

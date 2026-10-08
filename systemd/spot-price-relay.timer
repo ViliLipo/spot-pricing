@@ -1,0 +1,8 @@
+[Unit]
+Decription=Send command to Shelly relay based on spot pricing
+[Timer]
+OnCalendar=*-*-* *:0,15,30,45:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

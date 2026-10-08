@@ -1,0 +1,8 @@
+[Unit]
+Decription=Fetch spot pricing data when it is released
+[Timer]
+OnCalendar=*-*-* 14:15:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

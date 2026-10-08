@@ -1,0 +1,8 @@
+[Unit]
+Description=Automated control of spot pricing relay
+[Service]
+ExecStart=/opt/bin/spot-price-relay
+Environment="SPOT_PRICING_SHELLY_HOST=SET_ME"
+Environment="SPOT_PRICING_SQLITE_DB_URI=/opt/data/spot-pricing.sqlite3"
+Environment="SPOT_PRICING_OIL_PRICE=204"
+Environment="SPOT_PRICING_ELECTRICITY_BILL_MARGIN=6.5"
