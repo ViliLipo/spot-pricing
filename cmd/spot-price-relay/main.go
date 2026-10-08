@@ -28,7 +28,7 @@ func main() {
 	}
 	ebMargin, err := strconv.ParseFloat(env.ElectricityBillMarginEurCent.GetValue(), 64)
 	if err != nil {
-		log.Fatal("Failed to parse electicity bill margin")
+		log.Fatal("Failed to parse electricity bill margin.")
 		os.Exit(1)
 	}
 	dbUri := env.SqliteDbUri.GetValue()

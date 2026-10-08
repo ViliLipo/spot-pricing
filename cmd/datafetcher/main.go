@@ -10,7 +10,6 @@ import (
 
 
 func main() {
-
 	dbUri := env.SqliteDbUri.GetValue()
 	spotPricingApiUrl := env.SpotPricingApiUrl.GetValue()
 	log.Println(spotPricingApiUrl)
@@ -47,6 +46,7 @@ func convertSpotPrices(apiPrices []apiclient.SpotPricingDataPoint) []dataaccess.
 		endDate, err := dateStrToUnixStamp(item.EndDate)
 		if err != nil {
 			log.Fatalln("Failed to parse endDate " + item.EndDate + " as time.")
+			break
 		}
 		datarows = append(datarows, dataaccess.SpotPricingDataPointRow{
 			Price:     price,
