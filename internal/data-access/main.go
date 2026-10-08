@@ -18,6 +18,7 @@ type SpotPricingDataPointRow struct {
 
 func InitDatabase(dbUrl string) {
 	db, err := sql.Open("sqlite", dbUrl)
+	defer db.Close()
 	if err != nil {
 		log.Fatalln(err)
 		return
@@ -37,11 +38,11 @@ func InitDatabase(dbUrl string) {
 		log.Fatalln(err)
 		return
 	}
-	db.Close()
 }
 
 func StoreSpotPricingDataPoints(spotPricingDataPoints []SpotPricingDataPointRow, dbUrl string) {
 	db, err := sql.Open("sqlite", dbUrl)
+	defer db.Close()
 	if err != nil {
 		log.Fatalln(err)
 		return
@@ -51,11 +52,11 @@ func StoreSpotPricingDataPoints(spotPricingDataPoints []SpotPricingDataPointRow,
 		tx.Exec(`INSERT INTO spot_pricing (price, start_date, end_date) VALUES (?,?,?)`, dataPoint.Price, dataPoint.StartDate, dataPoint.EndDate)
 	}
 	tx.Commit()
-	db.Close()
 }
 
 func GetCurrentPrice(timeStamp int64, dbUrl string) (float64, error) {
 	db, err := sql.Open("sqlite", dbUrl)
+	defer db.Close()
 	if err != nil {
 		return 0.0, err
 	}
@@ -71,6 +72,7 @@ func GetCurrentPrice(timeStamp int64, dbUrl string) (float64, error) {
 // Read the startdate for price that is least in the past or most in the future...
 func GetLastRowStartDate(dbUrl string) int64 {
 	db, err := sql.Open("sqlite", dbUrl)
+	defer db.Close()
 	if err != nil {
 		return 0
 	}
